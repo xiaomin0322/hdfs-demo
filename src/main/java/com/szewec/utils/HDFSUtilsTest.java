@@ -229,10 +229,10 @@ public class HDFSUtilsTest {
 		// 读取文件
 		FSDataInputStream in = fileSystem.open(new Path(fileName));
 		// 将文件内容输出到控制台上，第三个参数表示输出多少字节的内容
-		//IOUtils.copyBytes(in, System.out, 1024);
-		
+		// IOUtils.copyBytes(in, System.out, 1024);
+
 		String out = org.apache.commons.io.IOUtils.toString(new InputStreamReader(in));
-		System.out.println("内容；"+out);
+		System.out.println("内容；" + out);
 		System.out.println("\n");
 		IOUtils.closeStream(in);
 	}
@@ -435,16 +435,19 @@ public class HDFSUtilsTest {
 		fileSystem.setReplication(new Path(resourceName), count);
 	}
 
-	public static void main(String[] args) throws Exception{
-		 System.out.println(System.getenv("JAVA_HOME"));
+	public static void main(String[] args) throws Exception {
+		System.out.println(System.getenv("JAVA_HOME"));
 		System.out.println(System.getenv("OneDrive"));
-	    System.out.println(System.getenv("HADOOP_HOME"));
-		
-		//System.setProperty("hadoop.home.dir", "C:\\my\\soft\\hadoop\\hadoop-2.8.5\\hadoop-2.8.5");
-		
+		System.out.println(System.getenv("HADOOP_HOME"));
+
+		// System.setProperty("hadoop.home.dir",
+		// "C:\\my\\soft\\hadoop\\hadoop-2.8.5\\hadoop-2.8.5");
+
 		HDFSUtilsTest.HDFS_PATH = "hdfs://udp02:8020";
-		HDFSUtilsTest.HDFS_USER ="hadoop";
-		HDFSUtilsTest.cat("/a.txt");
-		//HDFSUtilsTest.copyFromLocalFile("C:\\taobao.txt", "/user");
+		HDFSUtilsTest.HDFS_USER = "hadoop";
+		String filename = "/user/zzm/taobao.txt";
+		HDFSUtilsTest.delResources(filename, true);
+		HDFSUtilsTest.copyFromLocalFile("C:\\taobao.txt", "/user/zzm");
+		HDFSUtilsTest.cat(filename);
 	}
 }
